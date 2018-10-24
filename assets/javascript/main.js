@@ -14,6 +14,26 @@ function displayButtons() {
     showButton.text(tvShows[i]);
     $("#gifButtonDisplay").append(showButton);
 }
+    // adding a new TV Show
+function newShowButton() {
+    $("#addGif").on("click",function() {
+        var tvShow = $("#tvshow-input").val().trim();
+        if (tvShow === "") {
+            return false;
+        }
+        tvShow.push(tvShow);
+
+        displayButtons();
+        return false;
 });
+}
 
-
+    // removing the last tv show button
+function removeButton() {
+    $("#removeGif").on("click",function() {
+    tvShows.pop(tvShows);
+    displayButtons();
+    return false;
+    });
+}
+});
