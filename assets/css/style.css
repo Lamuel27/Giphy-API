@@ -2,7 +2,6 @@ body{
 	background: url("../images/TV.jpg");
 	background-size: 100%;
     background-repeat: no-repeat;
-    color: black;
 }
 * {
 	box-sizing: border-box;
@@ -16,9 +15,12 @@ img {
     background-color: #999999;
     border-color: #fff;
 }
-.gifDiv{
+.gifDisplay{
     float: left;
     margin: 3px;
+}
+.container-one {
+	padding: 20px;
 }
 .container {
 	background-color: #fff;
@@ -28,6 +30,9 @@ img {
 .jumbotron {
     background-color: inherit;
 }
-.jumbotron .h1, .jumbotron h1 {
+
+.jumbotron h1 {
     text-align: center;
+    font-family: 'Cinzel', serif;
+    text-decoration: underline;
 }
