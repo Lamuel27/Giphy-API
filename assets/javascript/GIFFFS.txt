@@ -1,8 +1,3 @@
-// my array of tv shows
-// var topics = ["Breaking Bad","The Simpsons","The League","The Office","Parks and Recreation","Rick and Morty","Family Guy","Silicon Valley","Malcolm in the Middle"];
-var topics = [];
-
-    
 $(document).ready(function() {
     $("button").on("click", function() {
         var name = $(this).attr("data-name");
@@ -56,7 +51,7 @@ $(document).ready(function() {
                 var newShow = $("#tvshow-input").val().trim();
                 topics.push(newShow);
                 console.log(topics);
-                $("#tvshow-input").val("");
+                // $("#tvshow-input").val('');
                 displayButtons();
               });
             
@@ -64,8 +59,8 @@ $(document).ready(function() {
                 $("#gifButtonDisplay").empty();
                 for (var i = 0; i < topics.length; i++) {
                   var a = $('<button class="btn btn-primary">');
-                //   a.addClass("show")
-                  a.attr("id", "show");
+                  a.addClass("show")
+                //   a.attr("id", "show");
                   a.attr("data-name", topics[i]);
                   a.text(topics[i]);
                   $("#gifButtonDisplay").append(a);
@@ -74,7 +69,7 @@ $(document).ready(function() {
 
               displayButtons();
 
-              $(document).on("click", "#show", topics);
+              $(document).on("click", ".show", topics);
               
         
         
