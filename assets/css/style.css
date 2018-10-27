@@ -54,8 +54,7 @@ img {
 	padding: 20px;
 }
 .container {
-	background-color: lightgrey;
-	opacity: 0.8;
+	background-color: RGBA(255,255,255,.8);
 	padding: 20px;
 }
 .containertwo {
