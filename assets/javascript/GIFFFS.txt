@@ -164,3 +164,102 @@ $(document).ready(function() {
 //     return false;
 //     });
 // }
+
+
+$(document).ready(function() {
+    for (var i = 0; i < athletesArray.length; i++) {
+        $("#gifButtonDisplay").append("<button type='button' onclick='searchGif(\"" + topics[i] + "\")' class='btn btn-primary' value=' " + topics[i] + "'> " + topics[i] + " </button>");
+    }
+});
+
+function athleteButtonClicked() {
+    var userInput = $('#tvshow-input').val();
+    searchGif(userInput);
+}
+
+function submitButtonClicked() {
+    var userInput = $('#tvshow-input').val();
+
+    if (userInput) {
+        $('#gifButtonDisplay').append("<button type='button' onclick='searchGif(\"" + userInput + "\")' class='btn btn-primary' value=' " + userInput + "'> " + userInput + " </button>");
+    }
+}
+
+function searchGif(gifName) {
+    $.ajax({
+            url: 'https://api.giphy.com/v1/gifs/search?q= ' + gifName + ' &api_key=dc6zaTOxFJmzC&limit=10',
+            type: 'GET',
+        })
+        .done(function(response) {
+            displayGif(response);
+        })
+
+
+.then(function(response) {
+    var results = response.data;
+    for (var i=0; i < results.length; i++){
+
+        var gifDiv = $("<div class='item'>");
+        gifDiv.addClass("gifDiv");
+        // pulling rating of gif
+        // var rating = results[i].rating;
+        var rating = $("<p>").text("Rating: " + results[i].rating);
+        gifDiv.append(rating);
+        // pulling gif
+        var nameImage = $("<img>");
+        nameImage.attr("src", results[i].images.fixed_height_small_still.url); 
+        nameImage.attr("data-still",results[i].images.fixed_height_small_still.url); 
+        nameImage.attr("data-animate",results[i].images.fixed_height_small.url); 
+        nameImage.attr("data-state", "still"); 
+        nameImage.addClass("image");
+        gifDiv.append(nameImage);
+
+        $("#gifs-appear-here").prepend(gifDiv);
+            }
+
+
+            $("#addGif").on("click", function(event) {
+                event.preventDefault();
+                var newShow = $("#tvshow-input").val().trim();
+                topics.push(newShow);
+                console.log(topics);
+                // $("#tvshow-input").val('');
+                displayButtons();
+              });
+            
+            function displayButtons() {
+                $("#gifButtonDisplay").empty();
+                for (var i = 0; i < topics.length; i++) {
+                  var a = $('<button class="btn btn-primary">');
+                  a.addClass("show")
+                //   a.attr("id", "show");
+                  a.attr("data-name", topics[i]);
+                  a.text(topics[i]);
+                  $("#gifButtonDisplay").append(a);
+                }
+              }
+
+              displayButtons();
+            });
+// function displayGif(response) {
+//     $('#athletes').empty();
+//     for (var i = 0; i < response.data.length; i++) {
+//         var rating = "<div class='ratings'> Rating:  " + (response.data[i].rating) + " </div>";
+//         var image = rating + '<img src= " ' + response.data[i].images.fixed_height_still.url +
+//             '" data-still=" ' + response.data[i].images.fixed_height_still.url +
+//             ' " data-animate=" ' + response.data[i].images.fixed_height.url + '" data-state="still" class="movImage" style= "width:250px; height:250px">';
+
+//         image = '<div class="col-md-4">' + image + "</div>";
+//         $('#athletes').append(image);
+//     }
+
+$(".image").on("click", function() {
+    var state = $(this).attr('data-state');
+    if ( state == 'still'){
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    }
+    else{
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still')
+    }

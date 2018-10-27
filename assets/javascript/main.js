@@ -1,9 +1,9 @@
 // my array of tv shows
 // var topics = ["Breaking Bad","The Simpsons","The League","The Office","Parks and Recreation","Rick and Morty","Family Guy","Silicon Valley","Malcolm in the Middle"];
+$(document).ready(function() {
 var topics = [];
 
-    
-$(document).ready(function() {
+    function displayTopicsInfo() {}
     $("button").on("click", function() {
         var name = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -30,11 +30,10 @@ $(document).ready(function() {
 	            nameImage.attr("data-animate",results[i].images.fixed_height_small.url); 
 	            nameImage.attr("data-state", "still"); 
 	            nameImage.addClass("image");
-	            gifDiv.append(nameImage);
+	            gifDiv.prepend(nameImage);
 	            
 	            $("#gifs-appear-here").prepend(gifDiv);
             }
-            
             // $("#addGif").on("click", function(event) {
       
             //     event.preventDefault();
@@ -51,33 +50,49 @@ $(document).ready(function() {
             
         
             // ========================================================
+            function renderButtons() {
+              // (this is necessary otherwise you will have repeat buttons)
+              $("#gifButtonDisplay").empty();
+              // Looping through the array of movies
+              for (var i = 0; i < topics.length; i++) {
+                var a = $("<button class='btn btn-primary'>");
+                a.addClass("item");
+                // Adding a data-attribute
+                a.attr("data-name", topics[i]);
+                // Providing the initial button text
+                a.text(topics[i]);
+                // Adding the button to the buttons-view div
+                $("#gifButtonDisplay").append(a);
+              }
+            }
             $("#addGif").on("click", function(event) {
                 event.preventDefault();
-                var newShow = $("#tvshow-input").val().trim();
-                topics.push(newShow);
+                var name = $("#tvshow-input").val().trim();
+                topics.push(name);
+                renderButtons();
                 console.log(topics);
                 $("#tvshow-input").val("");
                 displayButtons();
-              });
             
             function displayButtons() {
                 $("#gifButtonDisplay").empty();
                 for (var i = 0; i < topics.length; i++) {
                   var a = $('<button class="btn btn-primary">');
-                //   a.addClass("show")
-                  a.attr("id", "show");
+                  a.addClass("item")
+                  // a.attr("id", "show");
                   a.attr("data-name", topics[i]);
                   a.text(topics[i]);
                   $("#gifButtonDisplay").append(a);
                 }
               }
+            });
 
-              displayButtons();
-
-              $(document).on("click", "#show", topics);
+          
+              $(document).on("click", ".item", displayTopicsInfo);
               
-        
-        
+              renderButtons();
+
+          
             // ========================================================
         
             // This calls the renderButtons() function
