@@ -1,6 +1,8 @@
 // my array of tv shows
 // var topics = ["Breaking Bad","The Simpsons","The League","The Office","Parks and Recreation","Rick and Morty","Family Guy","Silicon Valley","Malcolm in the Middle"];
-$(document).ready(function () {
+// $(document).ready(function () {
+  window.onload = function () {
+
   var topics = [];
 
   var displayTopicsInfo = function () { }
@@ -83,6 +85,6 @@ $(document).ready(function () {
         });
       });
   });
-});
+};
 
 
