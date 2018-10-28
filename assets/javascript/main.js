@@ -1,10 +1,8 @@
-// my array of tv shows
-// var topics = ["Breaking Bad","The Simpsons","The League","The Office","Parks and Recreation","Rick and Morty","Family Guy","Silicon Valley","Malcolm in the Middle"];
 // $(document).ready(function () {
 window.onload = function () {
   // set an array of new topics
-
   var topics = [];
+  
   var originalState = $("#gifs-appear-here").clone()
   // Display gif and rating information
   // $("button").on("click", function () {})
@@ -75,7 +73,7 @@ window.onload = function () {
     $("#gifs-appear-here").replaceWith(originalState)
   });
 
-
+// changing back to original state every time a button is clicked
   $(document).on("click", "#show", function () {
     // while ($("#gifs-appear-here").length > 0) {
     $(".gifDiv").empty();
@@ -89,6 +87,7 @@ window.onload = function () {
 
 
   // ========================================================
+  // pause and play function
   var playPause = function() {
     var state = $(this).attr('data-state');
     if (state == 'still') {
@@ -102,7 +101,7 @@ window.onload = function () {
 
   $(document).on("click", "img", playPause)
 
-  // pause and play function
+  
 //   $(".gifDiv").on("click", function () {
 //     var state = $(this).attr('data-state');
 //     if (state == 'still') {
