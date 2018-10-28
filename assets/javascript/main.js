@@ -4,9 +4,9 @@
   window.onload = function () {
 
   var topics = [];
-
-  var displayTopicsInfo = function () { }
+  
   $("button").on("click", function () {
+  var displayTopicsInfo = function () { }
     var name = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       name + "&api_key=dc6zaTOxFJmzC&limit=10";
