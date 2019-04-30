@@ -11,7 +11,7 @@ window.onload = function () {
 
     var name = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      name + "&api_key=lkBHtZrbddWBYYeynXmC10KpQrVod79q";
+      name + "&api_key=lkBHtZrbddWBYYeynXmC10KpQrVod79q&limit=14";
 
     $.ajax({
       url: queryURL,
